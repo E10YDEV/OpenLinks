@@ -2,7 +2,7 @@
 	"title": "OpenLinks",
 	"description": "Free JSON-Driven template for Astro.",
 	"url_base": "https://yoursite.com",
-	"theme": "brutalism",
+	"theme": "default",
 	"footer": "Made with ❤️ by <a href='https://e10y.dev'>E10Y</a>",
 	"profile":
 		{
