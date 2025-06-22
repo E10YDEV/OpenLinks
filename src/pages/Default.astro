@@ -9,7 +9,7 @@ import Demo from "../../src/components/demo.astro"
 import { getTheme } from "../../src/lib/getTheme.ts";
 
 const { links, profile, title, description, url_base, footer } = data;
-const themeStyles = getTheme(data.theme);
+const themeStyles = getTheme("default");
 ---
 
 <Layout themeClass={themeStyles} meta={{ title, description, url_base }}>

@@ -1,0 +1,28 @@
+---
+import { themes } from "../../themes.ts";
+const themeNames = Object.keys(themes);
+---
+
+<nav class="w-full press-start bg-black/70 text-white px-4 py-4 flex items-center justify-between fixed top-0 left-0 z-50 shadow-md">
+  <div class="font-bold text-lg">
+    Theme Selector
+    <span class="text-xs bg-yellow-400 text-black px-2 py-1 rounded ml-2">
+      only visible in demo mode
+    </span>
+  </div>
+  <div class="flex gap-2 items-center">
+    {themeNames.map(name => (
+      <a
+        href={`/${name.charAt(0).toUpperCase() + name.slice(1)}`}
+        class="px-3 py-1 rounded bg-white/10 hover:bg-white/20 transition text-sm capitalize"
+      >
+        {name}
+      </a>
+    ))}
+  </div>
+</nav>
+<style>
+  body {
+    padding-top: 65px;
+  }
+</style>
