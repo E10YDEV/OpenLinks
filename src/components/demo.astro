@@ -3,26 +3,54 @@ import { themes } from "../../themes.ts";
 const themeNames = Object.keys(themes);
 ---
 
-<nav class="w-full press-start bg-black/70 text-white px-4 py-4 flex items-center justify-between fixed top-0 left-0 z-50 shadow-md">
-  <div class="font-bold text-lg">
+<nav class="w-full !font-sans bg-black/70 text-white px-4 py-4 flex items-center justify-between fixed top-0 left-0 z-50 shadow-md">
+  <div class="font-bold text-lg flex-shrink-0">
     Theme Selector
     <span class="text-xs bg-yellow-400 text-black px-2 py-1 rounded ml-2">
       only visible in demo mode
     </span>
   </div>
-  <div class="flex gap-2 items-center">
+  <button
+    id="demo-menu-toggle"
+    class="sm:hidden ml-2 p-2 rounded hover:bg-white/10 focus:outline-none"
+    aria-label="Abrir menú de temas"
+    type="button"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+  <div
+    id="demo-menu"
+    class="hidden sm:flex flex-col sm:flex-row gap-2 items-start sm:items-center absolute sm:static top-full left-0 w-full sm:w-auto bg-black/90 sm:bg-transparent px-4 py-2 sm:p-0"
+  >
     {themeNames.map(name => (
       <a
         href={`/${name.charAt(0).toUpperCase() + name.slice(1)}`}
-        class="px-3 py-1 rounded bg-white/10 hover:bg-white/20 transition text-sm capitalize"
+        class="px-3 py-1 rounded bg-white/10 hover:bg-white/20 transition text-sm capitalize whitespace-nowrap w-full sm:w-auto"
       >
         {name}
       </a>
     ))}
   </div>
 </nav>
+<script>
+  const btn = document.getElementById('demo-menu-toggle');
+  const menu = document.getElementById('demo-menu');
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+    // Opcional: cerrar menú al hacer click fuera en móvil
+    document.addEventListener('click', (e) => {
+      if (!btn.contains(e.target) && !menu.contains(e.target) && window.innerWidth < 640) {
+        menu.classList.add('hidden');
+      }
+    });
+  }
+</script>
 <style>
   body {
-    padding-top: 65px;
+    padding-top: 56px;
   }
 </style>
